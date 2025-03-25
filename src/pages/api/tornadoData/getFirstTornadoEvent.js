@@ -2,6 +2,8 @@
 import { knexDB } from "@/db/knexDB";
 
 export default async function handler(req, res) {
+  // await runMiddleware(req, res, corsMiddleware);
+
   try {
     const result = await knexDB("tornado_events").select("*").limit(1);
     res.status(200).json(result);

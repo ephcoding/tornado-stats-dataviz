@@ -1,32 +1,31 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import {
+  getFirstTornadoEvent,
+  getAnnualSummaries,
+  getMagnitudeSummaries,
+  getStateSummaries,
+  getAnnualSummaryByYear,
+  getMagnitudeSummaryByMagnitude,
+  getStateSummaryByState,
+} from "@/services/tornadoDataDB";
+
 export default function Home() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // fetch("/api/tornadoData/getFirstTornadoEvent")
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
-    // fetch(`/api/tornadoData/summaries/magnitude/${5}`)
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
-    // fetch(`/api/tornadoData/summaries/state/PA`)
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
-    // fetch(`/api/tornadoData/summaries/year/${2011}`)
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
-    fetch("/api/tornadoData/summaries/annual")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((error) => console.log(`Error: ${error}`));
-    // fetch(`/api/tornadoData/summaries/magnitudes`)
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
-    // fetch(`/api/tornadoData/summaries/states`)
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
+    async function fetchData() {
+      // const data = await getFirstTornadoEvent();
+      // const data = await getAnnualSummaries();
+      // const data = await getMagnitudeSummaries();
+      // const data = await getStateSummaries();
+      // const data = await getAnnualSummaryByYear(2021);
+      const data = await getMagnitudeSummaryByMagnitude(3);
+      // const data = await getStateSummaryByState("HI");
+      if (data) setData(data);
+    }
+    fetchData();
   }, []);
 
   return (
