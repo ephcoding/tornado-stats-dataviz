@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AlbersStateMap, AlbersCountyMap } from "@/components/D3Maps";
+import {
+  AlbersStateMap,
+  AlbersUsaStateMap,
+  AlbersCountyMap,
+} from "@/components/D3Maps";
 
 import {
   getFirstTornadoEvent,
@@ -34,6 +38,7 @@ export default function Home() {
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <AlbersCountyMap />
         <AlbersStateMap />
+        <AlbersUsaStateMap />
         <div>
           {data &&
             data.map((obj, index) => {
