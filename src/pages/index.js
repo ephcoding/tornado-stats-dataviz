@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
+  AlbersCountyMap,
   AlbersStateMap,
   AlbersUsaStateMap,
-  AlbersCountyMap,
+  AlbersUsaStateMapCanvas,
 } from "@/components/D3Maps";
 
 import {
@@ -39,20 +39,27 @@ export default function Home() {
         <AlbersCountyMap />
         <AlbersStateMap />
         <AlbersUsaStateMap />
-        <div>
-          {data &&
-            data.map((obj, index) => {
-              return (
-                <div key={index}>
-                  {Object.entries(obj).map(([key, value], index) => {
-                    return <p key={`${key}-${index}`}>{`${key}: ${value}`}</p>;
-                  })}
-                  <hr />
-                </div>
-              );
-            })}
-        </div>
+        <AlbersUsaStateMapCanvas />
+        <PrintedApiData data={data} />
       </main>
     </div>
   );
 }
+
+const PrintedApiData = ({ data }) => {
+  return (
+    <div>
+      {data &&
+        data.map((obj, index) => {
+          return (
+            <div key={index}>
+              {Object.entries(obj).map(([key, value], index) => {
+                return <p key={`${key}-${index}`}>{`${key}: ${value}`}</p>;
+              })}
+              <hr />
+            </div>
+          );
+        })}
+    </div>
+  );
+};
